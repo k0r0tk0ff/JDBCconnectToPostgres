@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>ru.k0r0tk0ff</groupId>
 	<artifactId>JDBCconnectToPostgres</artifactId>
-    <version>2.0</version>
+    <version>1.0</version>
     <name>JDBCconnectToPostgres</name>
     <url>https://github.com/k0r0tk0ff/JDBCconnectToPostgres</url>
 
@@ -13,6 +13,24 @@
     </properties>
 
     <dependencies>
+        <!--Connect to DB-->
+        <!-- https://mvnrepository.com/artifact/postgresql/postgresql -->
+<!--        <dependency>
+            <groupId>postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>9.1-901-1.jdbc4</version>
+        </dependency>-->
+        <!-- https://mvnrepository.com/artifact/postgresql/postgresql -->
+<!--        <dependency>
+            <groupId>postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>9.4.1208-jdbc42-atlassian-hosted</version>
+        </dependency>-->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>9.4.1212</version>
+        </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
