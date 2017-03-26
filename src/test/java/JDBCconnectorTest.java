@@ -39,16 +39,21 @@ public class JDBCconnectorTest {
 
         /**.
          *  Test load settings from file
+         *  (with public constructor)
+         */
+/*        Settings settings = new Settings();
+        ClassLoader loader = Settings.class.getClassLoader();
+        try (InputStream io = loader.getResourceAsStream("dbConnect.properties")) {
+            settings.load(io);
+        }
+        assertThat(settings.getValue("jdbc.username"), is("postgres"));
+*/
+        /**.
+         *  Test load settings from file
+         *  (with private constructor)
          */
         Settings settings = Settings.getInstance();
-
-        //ClassLoader loader = Settings.class.getClassLoader();
-       /* try (InputStream io = loader.getResourceAsStream("dbConnect.properties")) {
-            settings.load(io);
-        }*/
-        //String value = settings.value("jdbc.username");
-        //assertThat(value, is("c:\\tmp\\"));
-        System.out.println(settings.getValue("jdbc.username"));
+        assertThat(settings.getValue("jdbc.username"), is("postgres"));
 
         /**.
         *  Test connection
