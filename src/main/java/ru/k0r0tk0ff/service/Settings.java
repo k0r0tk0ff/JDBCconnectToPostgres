@@ -1,5 +1,7 @@
 package ru.k0r0tk0ff.service;
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
@@ -11,17 +13,33 @@ import java.util.Properties;
  * @since 0.1
  */
 public class Settings {
-    public final Properties prs = new Properties();
 
-    public void load(InputStream io) {
+    private static final Settings INSTANCE = new Settings();
+
+    private final static Properties properties = new Properties();
+
+    private Settings() {
         try {
-            this.prs.load(io);
-        } catch (Exception e) {
-            e.printStackTrace();
+            properties.load(new FileInputStream(
+                this.getClass().getClassLoader().
+                        getResource("dbConnect.properties").getFile()
+            ));
+        } catch (IOException IoError) {
+            IoError.printStackTrace();
         }
     }
 
+/*    public void load(InputStream io) {
+        try {
+            properties.load(io);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }*/
+
+    public static Settings getInstance() {return INSTANCE;}
+
     public String getValue(String key) {
-        return this.prs.getProperty(key);
+        return properties.getProperty(key);
     }
 }

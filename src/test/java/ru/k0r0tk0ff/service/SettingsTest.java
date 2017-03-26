@@ -50,7 +50,7 @@ public class SettingsTest {
      * Root directory is "src\main\resources"
      * @throws Exception
      */
-    @Test
+/*    @Test
     public void whenClassLoaderLoadFromFullPathFromFolderResources() throws Exception {
 
         Settings settings = getInstance();
@@ -61,5 +61,5 @@ public class SettingsTest {
         String value = settings.value("jdbc.password");
         assertThat(value, is("zxcvbnm"));
 
-    }
+    }*/
 }
