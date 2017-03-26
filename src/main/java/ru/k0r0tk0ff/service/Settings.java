@@ -1,8 +1,6 @@
 package ru.k0r0tk0ff.service;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.util.Properties;
 
 /**
@@ -15,36 +13,45 @@ import java.util.Properties;
 public class Settings {
 
     private static final Settings INSTANCE = new Settings();
-
-    private final static Properties properties = new Properties();
-
-/*    public Settings() {}
-
-    ClassLoader loader = Settings.class.getClassLoader();
-        try (InputStream io = loader.getResourceAsStream("dbConnect.properties")) {
-        settings.load(io);
-    }*/
+    private static Properties properties;
+    InputStream input = null;
 
     private Settings() {
+        properties = new Properties();
+        input = this.getClass().getClassLoader().getResourceAsStream("dbConnect.properties");
+        try {
+                properties.load(input);
+            } catch (IOException e) {
+                e.printStackTrace();
+
+                // close connection
+
+            } finally {
+            if (input != null) {
+                try {
+                    input.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
+
+/*    private Settings() {
+        try {
+            FileInputStream fis = new FileInputStream(
+                    //new File("dbConnect.properties"));
+                    new File("/resources/dbConnect.properties"));
+            properties.load(fis);
+        }
+        catch (Exception e) {
+            System.out.println("Cannot find file with settings!");
+        }
+    }*/
 
     public static Settings getInstance() {return INSTANCE;}
 
     public String getValue(String key) {
         return properties.getProperty(key);
     }
-
-    /*public final Properties prs = new Properties();
-
-    public void load(InputStream io) {
-        try {
-            this.prs.load(io);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public String getValue(String key) {
-        return this.prs.getProperty(key);
-    }*/
 }

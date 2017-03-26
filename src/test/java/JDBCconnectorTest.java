@@ -64,6 +64,7 @@ public class JDBCconnectorTest {
             connection = DriverManager.getConnection(
                     "jdbc:postgresql://127.0.0.1:5432/PetClinic", "postgres",
                     "zxcvbnm");
+            connection.close();
         } catch (SQLException e) {
             System.out.println("Connection Failed! Check output console");
             e.printStackTrace();
